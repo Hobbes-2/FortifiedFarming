@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bb0vf2hakw04r"]
+
+[ext_resource type="Script" uid="uid://bbo1r41iei18s" path="res://Scripts/test_crop.gd" id="2_3wn08"]
+
+[node name="TestCrop" type="Sprite2D"]
+texture_filter = 1
+hframes = 8
+vframes = 8
+frame = 22
+script = ExtResource("2_3wn08")

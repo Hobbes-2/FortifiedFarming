@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cw8ldnuu87kf5"]
+[gd_scene load_steps=6 format=3 uid="uid://cw8ldnuu87kf5"]
 
 [ext_resource type="Script" uid="uid://ce2ixc1y5uu6t" path="res://Scripts/player.gd" id="1_v0iea"]
 [ext_resource type="Texture2D" uid="uid://cgt027bvng6fy" path="res://images/icon.svg" id="2_cvnsp"]
+[ext_resource type="Resource" uid="uid://b1r6unmuri8hf" path="res://Scenes/Inventory/playerInv.tres" id="2_vgqql"]
+[ext_resource type="PackedScene" uid="uid://c2aoi0ewhr606" path="res://Scenes/Inventory/player_inventory.tscn" id="3_6t5aa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6t5aa"]
 size = Vector2(64, 64)
@@ -9,6 +11,7 @@ size = Vector2(64, 64)
 [node name="Player" type="CharacterBody2D"]
 z_index = 1
 script = ExtResource("1_v0iea")
+inv = ExtResource("2_vgqql")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_6t5aa")
@@ -18,3 +21,11 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_cvnsp")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+
+[node name="Inventory" parent="Camera2D" instance=ExtResource("3_6t5aa")]
+offset_left = -138.0
+offset_top = -243.0
+offset_right = -138.0
+offset_bottom = -243.0

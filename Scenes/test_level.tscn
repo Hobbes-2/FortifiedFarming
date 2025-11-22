@@ -35,17 +35,24 @@ texture_region_size = Vector2i(64, 64)
 4:2/0/custom_data_0 = true
 6:2/0 = 0
 6:2/0/custom_data_0 = true
+6:2/0/custom_data_1 = true
+6:2/0/custom_data_2 = "Carrot"
 
 [sub_resource type="TileSet" id="TileSet_7w7ni"]
 tile_size = Vector2i(64, 64)
 custom_data_layer_0/name = "placed"
 custom_data_layer_0/type = 1
+custom_data_layer_1/name = "harvestable"
+custom_data_layer_1/type = 1
+custom_data_layer_2/name = "name"
+custom_data_layer_2/type = 4
 sources/0 = SubResource("TileSetAtlasSource_rsyfn")
 
-[node name="TestLevel" type="Node2D" node_paths=PackedStringArray("ground_tilemap", "seed_tilemap")]
+[node name="TestLevel" type="Node2D" node_paths=PackedStringArray("ground_tilemap", "seed_tilemap", "player")]
 script = ExtResource("1_eglq2")
 ground_tilemap = NodePath("GroundTilemap")
 seed_tilemap = NodePath("SeedTilemap")
+player = NodePath("Player")
 
 [node name="Player" parent="." instance=ExtResource("1_iti4p")]
 
