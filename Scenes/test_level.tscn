@@ -1,10 +1,9 @@
-[gd_scene load_steps=12 format=4 uid="uid://cih62qbfhxwfn"]
+[gd_scene load_steps=13 format=4 uid="uid://cih62qbfhxwfn"]
 
 [ext_resource type="Script" uid="uid://lpp1e4a1hwyn" path="res://Scripts/world.gd" id="1_eglq2"]
 [ext_resource type="PackedScene" uid="uid://cw8ldnuu87kf5" path="res://Scenes/player.tscn" id="1_iti4p"]
 [ext_resource type="Texture2D" uid="uid://d2cla5e32eljr" path="res://images/FillerTileset.png" id="2_dtjkg"]
 [ext_resource type="Texture2D" uid="uid://dmibd88avbhpa" path="res://Tilemaps/Tilemap1.png" id="4_rsyfn"]
-[ext_resource type="Texture2D" uid="uid://yxxqkh7xcvdf" path="res://images/InventorySlotFiller.png" id="5_7w7ni"]
 
 [sub_resource type="Environment" id="Environment_7w7ni"]
 fog_enabled = true
@@ -80,6 +79,15 @@ custom_data_layer_2/name = "name"
 custom_data_layer_2/type = 4
 sources/0 = SubResource("TileSetAtlasSource_rsyfn")
 
+[sub_resource type="Gradient" id="Gradient_rsyfn"]
+offsets = PackedFloat32Array(0, 0.7916667)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7w7ni"]
+gradient = SubResource("Gradient_rsyfn")
+fill = 1
+fill_from = Vector2(0.5125, 0.45625)
+
 [node name="TestLevel" type="Node2D" node_paths=PackedStringArray("ground_tilemap", "seed_tilemap", "player")]
 script = ExtResource("1_eglq2")
 ground_tilemap = NodePath("GroundTilemap")
@@ -103,12 +111,17 @@ tile_set = SubResource("TileSet_7w7ni")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(-240, -176)
-texture = ExtResource("5_7w7ni")
+scale = Vector2(1.5, 1.5)
+texture = SubResource("GradientTexture2D_7w7ni")
 
 [node name="PointLight2D2" type="PointLight2D" parent="."]
-position = Vector2(-141, -176)
-texture = ExtResource("5_7w7ni")
+position = Vector2(-144, -176)
+scale = Vector2(1.5, 1.5)
+texture = SubResource("GradientTexture2D_7w7ni")
 
 [node name="PointLight2D3" type="PointLight2D" parent="."]
 position = Vector2(-48, -176)
-texture = ExtResource("5_7w7ni")
+scale = Vector2(1.5, 1.5)
+texture = SubResource("GradientTexture2D_7w7ni")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
