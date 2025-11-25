@@ -6,20 +6,16 @@
 
 [node name="Inventory" type="Control"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -876.0
-offset_bottom = -440.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
 script = ExtResource("1_yyg86")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 texture_filter = 1
 layout_mode = 0
-offset_right = 276.0
-offset_bottom = 208.0
+offset_left = -138.0
+offset_top = -106.0
+offset_right = 138.0
+offset_bottom = 102.0
 texture = ExtResource("2_iydob")
 region_rect = Rect2(0, 0, 64, 64)
 patch_margin_left = 6

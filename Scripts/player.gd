@@ -1,7 +1,7 @@
 class_name Player
 extends CharacterBody2D
 
-const SPEED = 300.0
+const SPEED = 100.0
 const JUMP_VELOCITY = -400.0
 @onready var camera : Camera2D = $Camera2D
 
@@ -13,10 +13,10 @@ func _physics_process(delta: float) -> void:
 		camera.zoom += Vector2(.1, .1)
 	if Input.is_action_just_pressed("Zoom Out"):
 		camera.zoom -= Vector2(.1, .1)
-	if camera.zoom > Vector2(3.0, 3.0):
-		camera.zoom = Vector2(3.0, 3.0)
-	if camera.zoom < Vector2(0.5, 0.5):
-		camera.zoom = Vector2(0.5, 0.5)
+	if camera.zoom > Vector2(4.0, 4.0):
+		camera.zoom = Vector2(4.0, 4.0)
+	if camera.zoom < Vector2(1.5, 1.5):
+		camera.zoom = Vector2(1.5, 1.5)
 
 
 	var direction := Input.get_vector("Left", "Right", "Up", "Down")
