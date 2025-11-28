@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=4 uid="uid://cih62qbfhxwfn"]
+[gd_scene load_steps=14 format=4 uid="uid://cih62qbfhxwfn"]
 
 [ext_resource type="Script" uid="uid://lpp1e4a1hwyn" path="res://Scripts/world.gd" id="1_eglq2"]
 [ext_resource type="PackedScene" uid="uid://cw8ldnuu87kf5" path="res://Scenes/player.tscn" id="1_iti4p"]
 [ext_resource type="Texture2D" uid="uid://d2cla5e32eljr" path="res://images/FillerTileset.png" id="2_dtjkg"]
 [ext_resource type="Texture2D" uid="uid://dmibd88avbhpa" path="res://Tilemaps/Tilemap1.png" id="4_rsyfn"]
+[ext_resource type="Texture2D" uid="uid://lg2ad54y7jix" path="res://images/PlantList.png" id="5_7w7ni"]
 
 [sub_resource type="Environment" id="Environment_7w7ni"]
 fog_enabled = true
@@ -57,17 +58,69 @@ custom_data_layer_0/type = 1
 sources/0 = SubResource("TileSetAtlasSource_eglq2")
 sources/1 = SubResource("TileSetAtlasSource_7w7ni")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rsyfn"]
-texture = ExtResource("2_dtjkg")
-texture_region_size = Vector2i(64, 64)
-2:2/0 = 0
-2:2/0/custom_data_0 = true
-4:2/0 = 0
-4:2/0/custom_data_0 = true
-6:2/0 = 0
-6:2/0/custom_data_0 = true
-6:2/0/custom_data_1 = true
-6:2/0/custom_data_2 = "Carrot"
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_btda1"]
+texture = ExtResource("5_7w7ni")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/custom_data_0 = true
+0:0/0/custom_data_2 = "peapod"
+0:1/0 = 0
+0:1/0/custom_data_0 = true
+0:1/0/custom_data_2 = "squash"
+1:0/0 = 0
+1:0/0/custom_data_0 = true
+1:0/0/custom_data_2 = "peapod"
+1:1/0 = 0
+1:1/0/custom_data_0 = true
+1:1/0/custom_data_2 = "squash"
+2:0/0 = 0
+2:0/0/custom_data_0 = true
+2:0/0/custom_data_1 = true
+2:0/0/custom_data_2 = "peapod"
+2:1/0 = 0
+2:1/0/custom_data_0 = true
+2:1/0/custom_data_1 = true
+2:1/0/custom_data_2 = "squash"
+3:0/0 = 0
+3:0/0/custom_data_0 = true
+3:0/0/custom_data_2 = "melon"
+3:1/0 = 0
+3:1/0/custom_data_0 = true
+3:1/0/custom_data_2 = "wheat"
+4:0/0 = 0
+4:0/0/custom_data_0 = true
+4:0/0/custom_data_2 = "melon"
+4:1/0 = 0
+4:1/0/custom_data_0 = true
+4:1/0/custom_data_2 = "wheat"
+5:0/0 = 0
+5:0/0/custom_data_0 = true
+5:0/0/custom_data_1 = true
+5:0/0/custom_data_2 = "melon"
+5:1/0 = 0
+5:1/0/custom_data_0 = true
+5:1/0/custom_data_1 = true
+5:1/0/custom_data_2 = "wheat"
+6:0/0 = 0
+6:0/0/custom_data_0 = true
+6:0/0/custom_data_2 = "cane"
+6:1/0 = 0
+6:1/0/custom_data_0 = true
+6:1/0/custom_data_2 = "grapes"
+7:0/0 = 0
+7:0/0/custom_data_0 = true
+7:0/0/custom_data_2 = "cane"
+7:1/0 = 0
+7:1/0/custom_data_0 = true
+7:1/0/custom_data_2 = "grapes"
+8:0/0 = 0
+8:0/0/custom_data_0 = true
+8:0/0/custom_data_1 = true
+8:0/0/custom_data_2 = "cane"
+8:1/0 = 0
+8:1/0/custom_data_0 = true
+8:1/0/custom_data_1 = true
+8:1/0/custom_data_2 = "grapes"
 
 [sub_resource type="TileSet" id="TileSet_7w7ni"]
 tile_size = Vector2i(32, 32)
@@ -77,7 +130,7 @@ custom_data_layer_1/name = "harvestable"
 custom_data_layer_1/type = 1
 custom_data_layer_2/name = "name"
 custom_data_layer_2/type = 4
-sources/0 = SubResource("TileSetAtlasSource_rsyfn")
+sources/0 = SubResource("TileSetAtlasSource_btda1")
 
 [sub_resource type="Gradient" id="Gradient_rsyfn"]
 offsets = PackedFloat32Array(0, 0.7916667)

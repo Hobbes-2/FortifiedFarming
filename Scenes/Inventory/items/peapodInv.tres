@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="InvItem" load_steps=3 format=3 uid="uid://d045alv3lfjpr"]
+
+[ext_resource type="Script" uid="uid://h8dqe2hocrl3" path="res://Scripts/Inventory/inventory_items.gd" id="1_2eqmj"]
+[ext_resource type="Texture2D" uid="uid://byx16vfk7wqyk" path="res://images/Plants/PeaPod.png" id="2_cx48d"]
+
+[resource]
+script = ExtResource("1_2eqmj")
+name = "PeaPod"
+texture = ExtResource("2_cx48d")
+metadata/_custom_type_script = "uid://h8dqe2hocrl3"
