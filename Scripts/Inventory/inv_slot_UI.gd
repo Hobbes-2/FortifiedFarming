@@ -4,7 +4,6 @@ extends Panel
 @onready var amount_label: Label = $CenterContainer/Panel/Label
 
 var hovering : bool = false
-var selected_plant = ""
 
 func update(slot : InvSlot):
 	if !slot.item:
@@ -22,15 +21,18 @@ func update(slot : InvSlot):
 func select(slot):
 	print(slot.item)
 	if hovering and slot.item:
-			selected_plant = slot.item.texture
-			print(selected_plant)
-	else:
-		print("Cannot select item!")
+			PlayerGlobals.selected_plant = slot.item.texture.get_path().get_file()
+			PlayerGlobals.selected_plant = PlayerGlobals.selected_plant.remove_chars(".png")
+			PlayerGlobals.selected_plant = PlayerGlobals.selected_plant.to_lower()
+			PlayerGlobals.selected_plant = PlayerGlobals.selected_plant + "0"
+			print("The selected plant is:" , PlayerGlobals.selected_plant)
+	#else:
+		#print("Cannot select item!")
 
 func _on_mouse_entered() -> void:
 	hovering = true
 	print("entered")
-	print(selected_plant)
+	print(PlayerGlobals.selected_plant)
 
 func _on_mouse_exited() -> void:
 	hovering = false

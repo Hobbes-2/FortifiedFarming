@@ -31,12 +31,34 @@ func _input(_event: InputEvent) -> void:
 		var tiledata2 = seed_tilemap.get_cell_tile_data(tile_mouse_pos)
 		var level : int = 0
 		var final_seed_level : int = 2
+
 		if tiledata:
 			var placeable = tiledata.get_custom_data(can_place_seed)
 			var already_placed = false
 			if tiledata2:
 				already_placed = tiledata2.get_custom_data(plant_placed)
-				print(tiledata2.get_custom_data(name))
+
+
+			var tileset := seed_tilemap.tile_set
+			for i in range(tileset.get_source_count()):
+				var source_id := tileset.get_source_id(i)
+				var source := tileset.get_source(source_id)
+				if source is TileSetAtlasSource:
+					var atlas_source := source as TileSetAtlasSource
+					var atlas_size := atlas_source.get_atlas_grid_size()
+					for x in range(atlas_size.x):
+						for y in range(atlas_size.y):
+							var coords := Vector2i(y, x)
+							if atlas_source.has_tile(coords):
+								var data = atlas_source.get_tile_data(coords, 0) # 0 = default alternative
+								if data:
+									var name1 = data.get_custom_data("name")
+									print("Tile ", coords, " → name: ", name1)
+									if name1 == PlayerGlobals.selected_plant:
+										tile_to_be_placed = coords
+										print("Placing:" , name1)
+
+
 			if placeable and already_placed == false:
 				seed_handling(tile_mouse_pos, level, tile_to_be_placed, final_seed_level)
 				if tiledata2:
