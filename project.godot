@@ -19,6 +19,10 @@ config/icon="res://images/icon.svg"
 
 PlayerGlobals="*res://Scripts/Globals/PlayerGlobals.gd"
 
+[display]
+
+window/size/mode=2
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/godot_super-wakatime/plugin.cfg")

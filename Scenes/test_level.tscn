@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=4 uid="uid://cih62qbfhxwfn"]
+[gd_scene load_steps=15 format=4 uid="uid://cih62qbfhxwfn"]
 
 [ext_resource type="Script" uid="uid://lpp1e4a1hwyn" path="res://Scripts/world.gd" id="1_eglq2"]
 [ext_resource type="PackedScene" uid="uid://cw8ldnuu87kf5" path="res://Scenes/player.tscn" id="1_iti4p"]
 [ext_resource type="Texture2D" uid="uid://d2cla5e32eljr" path="res://images/FillerTileset.png" id="2_dtjkg"]
 [ext_resource type="Texture2D" uid="uid://dmibd88avbhpa" path="res://Tilemaps/Tilemap1.png" id="4_rsyfn"]
 [ext_resource type="Texture2D" uid="uid://lg2ad54y7jix" path="res://images/PlantList.png" id="5_7w7ni"]
+[ext_resource type="PackedScene" uid="uid://c2cosccebo2nj" path="res://Scenes/shop.tscn" id="6_btda1"]
 
 [sub_resource type="Environment" id="Environment_7w7ni"]
 fog_enabled = true
@@ -39,20 +40,27 @@ texture_region_size = Vector2i(32, 32)
 3:1/0 = 0
 3:2/0 = 0
 4:1/0 = 0
+4:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 4:1/0/custom_data_0 = true
 5:1/0 = 0
+5:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 5:1/0/custom_data_0 = true
 6:1/0 = 0
+6:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 6:1/0/custom_data_0 = true
 7:1/0 = 0
+7:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 7:1/0/custom_data_0 = true
 8:1/0 = 0
+8:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 8:1/0/custom_data_0 = true
 9:1/0 = 0
+9:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 9:1/0/custom_data_0 = true
 
 [sub_resource type="TileSet" id="TileSet_rsyfn"]
 tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 1
 custom_data_layer_0/name = "can_place_seed"
 custom_data_layer_0/type = 1
 sources/0 = SubResource("TileSetAtlasSource_eglq2")
@@ -64,9 +72,11 @@ texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 0:0/0/custom_data_0 = true
 0:0/0/custom_data_2 = "peapod0"
+0:0/0/custom_data_3 = 5
 0:1/0 = 0
 0:1/0/custom_data_0 = true
 0:1/0/custom_data_2 = "squash0"
+0:1/0/custom_data_3 = 10
 1:0/0 = 0
 1:0/0/custom_data_0 = true
 1:0/0/custom_data_2 = "peapod"
@@ -77,16 +87,20 @@ texture_region_size = Vector2i(32, 32)
 2:0/0/custom_data_0 = true
 2:0/0/custom_data_1 = true
 2:0/0/custom_data_2 = "peapod"
+2:0/0/custom_data_3 = 5
 2:1/0 = 0
 2:1/0/custom_data_0 = true
 2:1/0/custom_data_1 = true
 2:1/0/custom_data_2 = "squash"
+2:1/0/custom_data_3 = 10
 3:0/0 = 0
 3:0/0/custom_data_0 = true
 3:0/0/custom_data_2 = "melon0"
+3:0/0/custom_data_3 = 20
 3:1/0 = 0
 3:1/0/custom_data_0 = true
 3:1/0/custom_data_2 = "wheat0"
+3:1/0/custom_data_3 = 10
 4:0/0 = 0
 4:0/0/custom_data_0 = true
 4:0/0/custom_data_2 = "melon"
@@ -97,16 +111,20 @@ texture_region_size = Vector2i(32, 32)
 5:0/0/custom_data_0 = true
 5:0/0/custom_data_1 = true
 5:0/0/custom_data_2 = "melon"
+5:0/0/custom_data_3 = 20
 5:1/0 = 0
 5:1/0/custom_data_0 = true
 5:1/0/custom_data_1 = true
 5:1/0/custom_data_2 = "wheat"
+5:1/0/custom_data_3 = 10
 6:0/0 = 0
 6:0/0/custom_data_0 = true
 6:0/0/custom_data_2 = "cane0"
+6:0/0/custom_data_3 = 10
 6:1/0 = 0
 6:1/0/custom_data_0 = true
 6:1/0/custom_data_2 = "grapes0"
+6:1/0/custom_data_3 = 10
 7:0/0 = 0
 7:0/0/custom_data_0 = true
 7:0/0/custom_data_2 = "cane"
@@ -117,10 +135,12 @@ texture_region_size = Vector2i(32, 32)
 8:0/0/custom_data_0 = true
 8:0/0/custom_data_1 = true
 8:0/0/custom_data_2 = "cane"
+8:0/0/custom_data_3 = 10
 8:1/0 = 0
 8:1/0/custom_data_0 = true
 8:1/0/custom_data_1 = true
 8:1/0/custom_data_2 = "grapes"
+8:1/0/custom_data_3 = 10
 
 [sub_resource type="TileSet" id="TileSet_7w7ni"]
 tile_size = Vector2i(32, 32)
@@ -130,6 +150,8 @@ custom_data_layer_1/name = "harvestable"
 custom_data_layer_1/type = 1
 custom_data_layer_2/name = "name"
 custom_data_layer_2/type = 4
+custom_data_layer_3/name = "price"
+custom_data_layer_3/type = 2
 sources/0 = SubResource("TileSetAtlasSource_btda1")
 
 [sub_resource type="Gradient" id="Gradient_rsyfn"]
@@ -160,6 +182,7 @@ tile_set = SubResource("TileSet_rsyfn")
 
 [node name="SeedTilemap" type="TileMapLayer" parent="."]
 texture_filter = 1
+tile_map_data = PackedByteArray("AAD9//v/AAACAAAAAAA=")
 tile_set = SubResource("TileSet_7w7ni")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
@@ -178,3 +201,7 @@ scale = Vector2(1.5, 1.5)
 texture = SubResource("GradientTexture2D_7w7ni")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+
+[node name="Shop" parent="." node_paths=PackedStringArray("player") instance=ExtResource("6_btda1")]
+position = Vector2(-512, -256)
+player = NodePath("../Player")

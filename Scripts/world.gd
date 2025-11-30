@@ -18,7 +18,7 @@ var ground_layer = 1
 func _ready() -> void:
 	for i in plant_name_list.size():
 		plant_inv_list.append("res://Scenes/Inventory/items/" + (plant_name_list[i]).to_lower() + "Inv" + ".tres") #= 
-		plant_dict.set(plant_name_list[i].to_lower(), plant_inv_list[i]) # plant_name_list[i]
+		plant_dict.set(plant_name_list[i].to_lower() + "0", plant_inv_list[i]) # plant_name_list[i]
 	print(plant_dict)
 
 func _input(_event: InputEvent) -> void:
@@ -26,7 +26,7 @@ func _input(_event: InputEvent) -> void:
 		var mouse_pos = get_global_mouse_position()
 		var tile_mouse_pos = seed_tilemap.local_to_map(mouse_pos)
 
-		var tile_to_be_placed = Vector2i(0, 0)
+		var tile_to_be_placed = Vector2i(9, 9)
 		var tiledata = ground_tilemap.get_cell_tile_data(tile_mouse_pos)
 		var tiledata2 = seed_tilemap.get_cell_tile_data(tile_mouse_pos)
 		var level : int = 0
@@ -63,6 +63,10 @@ func _input(_event: InputEvent) -> void:
 				seed_handling(tile_mouse_pos, level, tile_to_be_placed, final_seed_level)
 				if tiledata2:
 					tiledata2.set_custom_data(plant_placed, true)
+					PlayerGlobals.sell_total -= tiledata2.get_custom_data("price")
+				if PlayerGlobals.selected_plant != "":
+					player.collect(load(plant_dict[PlayerGlobals.selected_plant]), -1)
+
 			else:
 				print("cannot place here")
 		else:
@@ -75,11 +79,13 @@ func _input(_event: InputEvent) -> void:
 
 		if tiledata2:
 			print("its:" + str(tiledata2.get_custom_data("name")))
-			if tiledata2.get_custom_data("harvestable") and plant_dict[tiledata2.get_custom_data("name")] != null:
-				var item = load(plant_dict[tiledata2.get_custom_data("name")])
+			if tiledata2.get_custom_data("harvestable") and plant_dict[tiledata2.get_custom_data("name") + "0"] != null:
+				var item = load(plant_dict[tiledata2.get_custom_data("name") + "0"])
 				seed_tilemap.set_cell(tile_mouse_pos, 0, Vector2i(8, 8))
 				#harvest()Vector2i
-				player.collect(item)
+				player.collect(item, 2)
+				PlayerGlobals.sell_total += tiledata2.get_custom_data("price")
+
 			else:
 				print("cannot harvest")
 
@@ -98,4 +104,11 @@ func seed_handling(tilemap_pos, level, atlas_coords, final_seed_level):
 		seed_handling(tilemap_pos, level + 1, new_atlas, final_seed_level)
 
 func harvest(item):
-	player.collect(item)
+	var mouse_pos = get_global_mouse_position()
+	var tile_mouse_pos = seed_tilemap.local_to_map(mouse_pos)
+	var tiledata2 = seed_tilemap.get_cell_tile_data(tile_mouse_pos)
+	player.collect(item, 2)
+	PlayerGlobals.sell_total += tiledata2.get_custom_data("price")
+
+func clear_inv(item):
+	player.clear(item)

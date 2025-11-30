@@ -1,0 +1,81 @@
+[gd_scene load_steps=8 format=3 uid="uid://cnx6emqscvkwk"]
+
+[ext_resource type="Script" uid="uid://5678g82boeqj" path="res://Scripts/shop_menu.gd" id="1_jhj42"]
+[ext_resource type="Texture2D" uid="uid://byx16vfk7wqyk" path="res://images/Plants/PeaPod.png" id="2_lvwfa"]
+[ext_resource type="Texture2D" uid="uid://c6u8ttu31fdrk" path="res://images/Plants/Melon.png" id="3_lvwfa"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xdhm7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xbhrw"]
+atlas = ExtResource("2_lvwfa")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xdhm7"]
+atlas = ExtResource("3_lvwfa")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hm266"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xbhrw")
+}],
+"loop": true,
+"name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xdhm7")
+}],
+"loop": true,
+"name": &"2",
+"speed": 5.0
+}]
+
+[node name="ShopMenu" type="StaticBody2D"]
+physics_material_override = SubResource("PhysicsMaterial_xdhm7")
+script = ExtResource("1_jhj42")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 192.0
+offset_bottom = 128.0
+color = Color(1, 0, 0, 0.02745098)
+
+[node name="LeftButton" type="Button" parent="."]
+offset_left = 8.0
+offset_top = 88.0
+offset_right = 32.0
+offset_bottom = 120.0
+text = "<-"
+
+[node name="RightButton" type="Button" parent="."]
+offset_left = 40.0
+offset_top = 88.0
+offset_right = 64.0
+offset_bottom = 120.0
+text = "->"
+
+[node name="Buy" type="Button" parent="."]
+offset_left = 88.0
+offset_top = 72.0
+offset_right = 184.0
+offset_bottom = 120.0
+
+[node name="Icon" type="AnimatedSprite2D" parent="."]
+position = Vector2(40, 32)
+sprite_frames = SubResource("SpriteFrames_hm266")
+animation = &"2"
+
+[node name="PriceIcon" type="Sprite2D" parent="."]
+
+[node name="Price" type="Label" parent="."]
+offset_left = 104.0
+offset_top = 8.0
+offset_right = 149.0
+offset_bottom = 31.0
+text = "PRICE"
+
+[connection signal="pressed" from="LeftButton" to="." method="_on_left_button_pressed"]
+[connection signal="pressed" from="RightButton" to="." method="_on_right_button_pressed"]
+[connection signal="pressed" from="Buy" to="." method="_on_buy_pressed"]

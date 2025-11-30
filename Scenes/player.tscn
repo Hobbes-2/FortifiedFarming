@@ -7,7 +7,7 @@
 [ext_resource type="Shader" uid="uid://c7wu42lk3vcst" path="res://Shaders/TintShader.gdshader" id="5_fkybt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6t5aa"]
-size = Vector2(64, 64)
+size = Vector2(63, 63)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_vgqql"]
 
@@ -44,7 +44,6 @@ texture = ExtResource("2_cvnsp")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2.5, 2.5)
-position_smoothing_enabled = true
 drag_left_margin = 0.9
 drag_top_margin = 0.9
 drag_right_margin = 0.9
@@ -84,3 +83,9 @@ material = SubResource("ShaderMaterial_fkybt")
 position = Vector2(-2.6464462e-05, 0)
 scale = Vector2(928, 544)
 mesh = SubResource("QuadMesh_vgqql")
+
+[node name="Money" type="Label" parent="."]
+offset_left = 336.0
+offset_top = -240.0
+offset_right = 376.0
+offset_bottom = -217.0

@@ -6,7 +6,12 @@ extends Panel
 var hovering : bool = false
 
 func update(slot : InvSlot):
-	if !slot.item:
+	if slot.item == load("res://Scenes/Inventory/items/" + str(PlayerGlobals.selected_plant).to_lower().left(-1) + "Inv" + ".tres") and slot.amount <= 0:
+		PlayerGlobals.selected_plant = ""
+		item_display.visible = false
+		amount_label.visible = false
+
+	elif !slot.item or slot.amount <= 0:
 		item_display.visible = false
 		amount_label.visible = false
 	else:
@@ -22,7 +27,7 @@ func select(slot):
 	print(slot.item)
 	if hovering and slot.item:
 			PlayerGlobals.selected_plant = slot.item.texture.get_path().get_file()
-			PlayerGlobals.selected_plant = PlayerGlobals.selected_plant.remove_chars(".png")
+			PlayerGlobals.selected_plant = PlayerGlobals.selected_plant.left(PlayerGlobals.selected_plant.length() - 4)
 			PlayerGlobals.selected_plant = PlayerGlobals.selected_plant.to_lower()
 			PlayerGlobals.selected_plant = PlayerGlobals.selected_plant + "0"
 			print("The selected plant is:" , PlayerGlobals.selected_plant)

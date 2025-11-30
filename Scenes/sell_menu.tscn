@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://b0y7ld7wft7jy"]
+
+[ext_resource type="Script" uid="uid://dyt71puatfcji" path="res://Scripts/sell_menu.gd" id="1_mxufr"]
+
+[node name="SellMenu" type="StaticBody2D"]
+script = ExtResource("1_mxufr")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 192.0
+offset_bottom = 128.0
+color = Color(1, 0, 0, 0.02745098)
+
+[node name="Sell" type="Button" parent="."]
+offset_left = 96.0
+offset_top = 64.0
+offset_right = 184.0
+offset_bottom = 118.0
+text = "SELL ALL ITEMS"
+autowrap_mode = 2
+
+[node name="TotalPrice" type="Label" parent="."]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 48.0
+offset_bottom = 31.0
+
+[connection signal="pressed" from="Sell" to="." method="_on_sell_pressed"]

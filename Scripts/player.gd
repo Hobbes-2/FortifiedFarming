@@ -18,6 +18,7 @@ func _physics_process(delta: float) -> void:
 	if camera.zoom < Vector2(1.5, 1.5):
 		camera.zoom = Vector2(1.5, 1.5)
 
+	$Money.text = str(PlayerGlobals.money)
 
 	var direction := Input.get_vector("Left", "Right", "Up", "Down")
 	if direction:
@@ -27,8 +28,12 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
-func collect(item):
-	inv.insert(item)
+func collect(item, number):
+	inv.insert(item, number)
 
+func clear(item):
+	inv.clear(item)
 
 #This is a test to see if git is working
+func player_shop_method():
+	pass
