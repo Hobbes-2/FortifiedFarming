@@ -1,7 +1,7 @@
 extends StaticBody2D
 
 var item = 1
-var number_of_items = 2
+var number_of_items 
 
 var item_price = 100
 var item_owned = false
@@ -11,10 +11,13 @@ var player
 
 var list : Dictionary = {
 	"1" : "res://Scenes/Inventory/items/peapodInv.tres",
-	"2" : "res://Scenes/Inventory/items/melonInv.tres"}
+	"2" : "res://Scenes/Inventory/items/melonInv.tres",
+	"3" : "res://Scenes/Inventory/items/caneInv.tres",
+	"4" : "res://Scenes/Inventory/items/squashInv.tres"}
 
 
 func _ready() -> void:
+	number_of_items = list.size()
 	player = get_parent().player
 	$Icon.play("1")
 	item = 1

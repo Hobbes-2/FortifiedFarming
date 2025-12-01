@@ -3,8 +3,8 @@ extends Node2D
 @export var ground_tilemap : TileMapLayer
 @export var seed_tilemap : TileMapLayer
 @export var player : Player
-
-var plant_name_list : Array = ["Peapod", "Melon"]
+@export var debug : bool
+var plant_name_list : Array = ["Peapod", "Melon", "Cane", "Squash"]
 var plant_scene_list : Array = ["res://Scenes/test_crop.tscn"]
 var plant_inv_list : Array  = []#= ["res://images/Plants/" + plant_name_list + "Inv" + ".png"]
 
@@ -22,7 +22,7 @@ func _ready() -> void:
 	print(plant_dict)
 
 func _input(_event: InputEvent) -> void:
-	if Input.is_action_just_pressed("Click"):
+	if Input.is_action_pressed("Click"):
 		var mouse_pos = get_global_mouse_position()
 		var tile_mouse_pos = seed_tilemap.local_to_map(mouse_pos)
 
@@ -53,10 +53,12 @@ func _input(_event: InputEvent) -> void:
 								var data = atlas_source.get_tile_data(coords, 0) # 0 = default alternative
 								if data:
 									var name1 = data.get_custom_data("name")
-									print("Tile ", coords, " → name: ", name1)
+									if debug:
+										print("Tile ", coords, " → name: ", name1)
 									if name1 == PlayerGlobals.selected_plant:
 										tile_to_be_placed = coords
-										print("Placing:" , name1)
+										if debug:
+											print("Placing:" , name1)
 
 
 			if placeable and already_placed == false:
@@ -68,26 +70,29 @@ func _input(_event: InputEvent) -> void:
 					player.collect(load(plant_dict[PlayerGlobals.selected_plant]), -1)
 
 			else:
-				print("cannot place here")
+				if debug:
+					print("cannot place here")
 		else:
-			print("no tiledata")
+			if debug:
+				print("no tiledata")
 
-	if Input.is_action_just_pressed("Harvest"):
+	if Input.is_action_pressed("Harvest"):
 		var mouse_pos = get_global_mouse_position()
 		var tile_mouse_pos = seed_tilemap.local_to_map(mouse_pos)
 		var tiledata2 = seed_tilemap.get_cell_tile_data(tile_mouse_pos)
 
 		if tiledata2:
-			print("its:" + str(tiledata2.get_custom_data("name")))
+			if debug:
+				print("its:" + str(tiledata2.get_custom_data("name")))
 			if tiledata2.get_custom_data("harvestable") and plant_dict[tiledata2.get_custom_data("name") + "0"] != null:
 				var item = load(plant_dict[tiledata2.get_custom_data("name") + "0"])
 				seed_tilemap.set_cell(tile_mouse_pos, 0, Vector2i(8, 8))
-				#harvest()Vector2i
 				player.collect(item, 2)
 				PlayerGlobals.sell_total += tiledata2.get_custom_data("price")
 
 			else:
-				print("cannot harvest")
+				if debug:
+					print("cannot harvest")
 
 
 func seed_handling(tilemap_pos, level, atlas_coords, final_seed_level):
@@ -95,7 +100,7 @@ func seed_handling(tilemap_pos, level, atlas_coords, final_seed_level):
 
 	seed_tilemap.set_cell(tilemap_pos, source_id, atlas_coords)
 
-	await get_tree().create_timer(5.0).timeout
+	await get_tree().create_timer(5.0 +- randf_range(0, 2)).timeout
 
 	if level == final_seed_level:
 		pass

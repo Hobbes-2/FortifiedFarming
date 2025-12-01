@@ -6,8 +6,20 @@ const JUMP_VELOCITY = -400.0
 @onready var camera : Camera2D = $Camera2D
 
 @export var inv : Inv
+@onready var sprite: AnimatedSprite2D = $Sprite2D
+var diraddon = "F"
+
+@export var top : Node2D
+@export var left : Node2D
+@export var bot : Node2D
+@export var right : Node2D
 
 func _physics_process(delta: float) -> void:
+
+	camera.limit_left = left.global_position.x
+	camera.limit_right = right.global_position.x
+	camera.limit_top = top.global_position.y
+	camera.limit_bottom = bot.global_position.y
 
 	if Input.is_action_just_pressed("Zoom In"):
 		camera.zoom += Vector2(.1, .1)
@@ -22,9 +34,19 @@ func _physics_process(delta: float) -> void:
 
 	var direction := Input.get_vector("Left", "Right", "Up", "Down")
 	if direction:
+		if Input.is_action_just_pressed("Left"):
+			diraddon = "L"
+		if Input.is_action_just_pressed("Right"):
+			diraddon = "R"
+		if Input.is_action_just_pressed("Up"):
+			diraddon = "B"
+		if Input.is_action_just_pressed("Down"):
+			diraddon = "F"
+		sprite.play("Walk" + diraddon)
 		velocity = direction * SPEED
 	else:
 		velocity = Vector2.ZERO
+		sprite.play("Idle" + diraddon)
 
 	move_and_slide()
 
