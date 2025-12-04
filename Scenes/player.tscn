@@ -265,9 +265,10 @@ drag_bottom_margin = 0.9
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
 
-[node name="Inventory" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("3_6t5aa")]
+[node name="Inventory" parent="." node_paths=PackedStringArray("camera", "money") instance=ExtResource("3_6t5aa")]
 visible = false
 camera = NodePath("../Camera2D")
+money = NodePath("../Money")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 visible = false

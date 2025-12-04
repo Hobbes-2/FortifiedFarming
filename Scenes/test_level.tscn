@@ -1,30 +1,15 @@
-[gd_scene load_steps=15 format=4 uid="uid://cih62qbfhxwfn"]
+[gd_scene load_steps=20 format=4 uid="uid://cih62qbfhxwfn"]
 
 [ext_resource type="Script" uid="uid://lpp1e4a1hwyn" path="res://Scripts/world.gd" id="1_eglq2"]
 [ext_resource type="PackedScene" uid="uid://cw8ldnuu87kf5" path="res://Scenes/player.tscn" id="1_iti4p"]
-[ext_resource type="Texture2D" uid="uid://d2cla5e32eljr" path="res://images/FillerTileset.png" id="2_dtjkg"]
 [ext_resource type="Texture2D" uid="uid://dmibd88avbhpa" path="res://Tilemaps/Tilemap1.png" id="4_rsyfn"]
 [ext_resource type="Texture2D" uid="uid://lg2ad54y7jix" path="res://images/PlantList.png" id="5_7w7ni"]
 [ext_resource type="PackedScene" uid="uid://c2cosccebo2nj" path="res://Scenes/shop.tscn" id="6_btda1"]
+[ext_resource type="PackedScene" uid="uid://cax4xds7tltwd" path="res://Scenes/scene_transition_anim.tscn" id="6_xq3o0"]
+[ext_resource type="Shader" uid="uid://xh13n4tudp45" path="res://Shaders/Test.gdshader" id="7_xq3o0"]
 
 [sub_resource type="Environment" id="Environment_7w7ni"]
 fog_enabled = true
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_eglq2"]
-texture = ExtResource("2_dtjkg")
-texture_region_size = Vector2i(64, 64)
-0:0/0 = 0
-1:1/0 = 0
-2:0/0 = 0
-0:2/0 = 0
-0:2/0/custom_data_0 = true
-2:2/0 = 0
-1:3/0 = 0
-3:1/0 = 0
-6:2/0 = 0
-5:1/0 = 0
-4:2/0 = 0
-4:0/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7w7ni"]
 texture = ExtResource("4_rsyfn")
@@ -35,10 +20,12 @@ texture_region_size = Vector2i(32, 32)
 1:2/0 = 0
 2:2/0 = 0
 2:1/0 = 0
+2:1/0/custom_data_1 = true
 2:0/0 = 0
 3:0/0 = 0
 3:1/0 = 0
 3:2/0 = 0
+4:1/next_alternative_id = 2
 4:1/0 = 0
 4:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 4:1/0/custom_data_0 = true
@@ -63,7 +50,8 @@ tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
 custom_data_layer_0/name = "can_place_seed"
 custom_data_layer_0/type = 1
-sources/0 = SubResource("TileSetAtlasSource_eglq2")
+custom_data_layer_1/name = "can_build"
+custom_data_layer_1/type = 1
 sources/1 = SubResource("TileSetAtlasSource_7w7ni")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_btda1"]
@@ -72,7 +60,7 @@ texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 0:0/0/custom_data_0 = true
 0:0/0/custom_data_2 = "peapod0"
-0:0/0/custom_data_3 = 5
+0:0/0/custom_data_3 = 500
 0:1/0 = 0
 0:1/0/custom_data_0 = true
 0:1/0/custom_data_2 = "squash0"
@@ -80,21 +68,25 @@ texture_region_size = Vector2i(32, 32)
 1:0/0 = 0
 1:0/0/custom_data_0 = true
 1:0/0/custom_data_2 = "peapod"
-1:0/0/custom_data_3 = 5
+1:0/0/custom_data_3 = 500
+1:0/0/custom_data_4 = 1
 1:1/0 = 0
 1:1/0/custom_data_0 = true
 1:1/0/custom_data_2 = "squash"
 1:1/0/custom_data_3 = 10
+1:1/0/custom_data_4 = 1
 2:0/0 = 0
 2:0/0/custom_data_0 = true
 2:0/0/custom_data_1 = true
 2:0/0/custom_data_2 = "peapod"
-2:0/0/custom_data_3 = 5
+2:0/0/custom_data_3 = 500
+2:0/0/custom_data_4 = 2
 2:1/0 = 0
 2:1/0/custom_data_0 = true
 2:1/0/custom_data_1 = true
 2:1/0/custom_data_2 = "squash"
 2:1/0/custom_data_3 = 10
+2:1/0/custom_data_4 = 2
 3:0/0 = 0
 3:0/0/custom_data_0 = true
 3:0/0/custom_data_2 = "melon0"
@@ -107,20 +99,24 @@ texture_region_size = Vector2i(32, 32)
 4:0/0/custom_data_0 = true
 4:0/0/custom_data_2 = "melon"
 4:0/0/custom_data_3 = 20
+4:0/0/custom_data_4 = 1
 4:1/0 = 0
 4:1/0/custom_data_0 = true
 4:1/0/custom_data_2 = "wheat"
 4:1/0/custom_data_3 = 10
+4:1/0/custom_data_4 = 1
 5:0/0 = 0
 5:0/0/custom_data_0 = true
 5:0/0/custom_data_1 = true
 5:0/0/custom_data_2 = "melon"
 5:0/0/custom_data_3 = 20
+5:0/0/custom_data_4 = 2
 5:1/0 = 0
 5:1/0/custom_data_0 = true
 5:1/0/custom_data_1 = true
 5:1/0/custom_data_2 = "wheat"
 5:1/0/custom_data_3 = 10
+5:1/0/custom_data_4 = 2
 6:0/0 = 0
 6:0/0/custom_data_0 = true
 6:0/0/custom_data_2 = "cane0"
@@ -133,20 +129,24 @@ texture_region_size = Vector2i(32, 32)
 7:0/0/custom_data_0 = true
 7:0/0/custom_data_2 = "cane"
 7:0/0/custom_data_3 = 10
+7:0/0/custom_data_4 = 1
 7:1/0 = 0
 7:1/0/custom_data_0 = true
 7:1/0/custom_data_2 = "grapes"
 7:1/0/custom_data_3 = 10
+7:1/0/custom_data_4 = 1
 8:0/0 = 0
 8:0/0/custom_data_0 = true
 8:0/0/custom_data_1 = true
 8:0/0/custom_data_2 = "cane"
 8:0/0/custom_data_3 = 10
+8:0/0/custom_data_4 = 2
 8:1/0 = 0
 8:1/0/custom_data_0 = true
 8:1/0/custom_data_1 = true
 8:1/0/custom_data_2 = "grapes"
 8:1/0/custom_data_3 = 10
+8:1/0/custom_data_4 = 2
 0:2/0 = 0
 0:2/0/custom_data_0 = true
 0:2/0/custom_data_2 = "orange0"
@@ -163,29 +163,35 @@ texture_region_size = Vector2i(32, 32)
 1:4/0/custom_data_0 = true
 1:4/0/custom_data_2 = "pepper"
 1:4/0/custom_data_3 = 10
+1:4/0/custom_data_4 = 1
 1:3/0 = 0
 1:3/0/custom_data_0 = true
 1:3/0/custom_data_2 = "tomato"
 1:3/0/custom_data_3 = 10
+1:3/0/custom_data_4 = 1
 1:2/0 = 0
 1:2/0/custom_data_0 = true
 1:2/0/custom_data_2 = "orange"
 1:2/0/custom_data_3 = 20
+1:2/0/custom_data_4 = 1
 2:2/0 = 0
 2:2/0/custom_data_0 = true
 2:2/0/custom_data_1 = true
 2:2/0/custom_data_2 = "orange"
 2:2/0/custom_data_3 = 20
+2:2/0/custom_data_4 = 2
 2:3/0 = 0
 2:3/0/custom_data_0 = true
 2:3/0/custom_data_1 = true
 2:3/0/custom_data_2 = "tomato"
 2:3/0/custom_data_3 = 10
+2:3/0/custom_data_4 = 2
 2:4/0 = 0
 2:4/0/custom_data_0 = true
 2:4/0/custom_data_1 = true
 2:4/0/custom_data_2 = "pepper"
 2:4/0/custom_data_3 = 10
+2:4/0/custom_data_4 = 2
 3:3/0 = 0
 3:3/0/custom_data_0 = true
 3:3/0/custom_data_2 = "kale0"
@@ -202,29 +208,35 @@ texture_region_size = Vector2i(32, 32)
 4:4/0/custom_data_0 = true
 4:4/0/custom_data_2 = "carrot"
 4:4/0/custom_data_3 = 10
+4:4/0/custom_data_4 = 1
 4:3/0 = 0
 4:3/0/custom_data_0 = true
 4:3/0/custom_data_2 = "kale"
 4:3/0/custom_data_3 = 10
+4:3/0/custom_data_4 = 1
 4:2/0 = 0
 4:2/0/custom_data_0 = true
 4:2/0/custom_data_2 = "potato"
 4:2/0/custom_data_3 = 10
+4:2/0/custom_data_4 = 1
 5:2/0 = 0
 5:2/0/custom_data_0 = true
 5:2/0/custom_data_1 = true
 5:2/0/custom_data_2 = "potato"
 5:2/0/custom_data_3 = 10
+5:2/0/custom_data_4 = 2
 5:3/0 = 0
 5:3/0/custom_data_0 = true
 5:3/0/custom_data_1 = true
 5:3/0/custom_data_2 = "kale"
 5:3/0/custom_data_3 = 10
+5:3/0/custom_data_4 = 2
 5:4/0 = 0
 5:4/0/custom_data_0 = true
 5:4/0/custom_data_1 = true
 5:4/0/custom_data_2 = "carrot"
 5:4/0/custom_data_3 = 10
+5:4/0/custom_data_4 = 2
 6:3/0 = 0
 6:3/0/custom_data_0 = true
 6:3/0/custom_data_2 = "bamboo0"
@@ -240,27 +252,33 @@ texture_region_size = Vector2i(32, 32)
 7:4/0/custom_data_0 = true
 7:4/0/custom_data_2 = "otatop"
 7:4/0/custom_data_3 = 100
+7:4/0/custom_data_4 = 1
 7:3/0 = 0
 7:3/0/custom_data_0 = true
 7:3/0/custom_data_2 = "bamboo"
+7:3/0/custom_data_4 = 1
 7:2/0 = 0
 7:2/0/custom_data_0 = true
 7:2/0/custom_data_2 = "turnip"
 7:2/0/custom_data_3 = 10
+7:2/0/custom_data_4 = 1
 8:2/0 = 0
 8:2/0/custom_data_0 = true
 8:2/0/custom_data_1 = true
 8:2/0/custom_data_2 = "turnip"
 8:2/0/custom_data_3 = 10
+8:2/0/custom_data_4 = 2
 8:3/0 = 0
 8:3/0/custom_data_0 = true
 8:3/0/custom_data_1 = true
 8:3/0/custom_data_2 = "bamboo"
+8:3/0/custom_data_4 = 2
 8:4/0 = 0
 8:4/0/custom_data_0 = true
 8:4/0/custom_data_1 = true
 8:4/0/custom_data_2 = "otatop"
 8:4/0/custom_data_3 = 100
+8:4/0/custom_data_4 = 2
 
 [sub_resource type="TileSet" id="TileSet_7w7ni"]
 tile_size = Vector2i(32, 32)
@@ -272,6 +290,10 @@ custom_data_layer_2/name = "name"
 custom_data_layer_2/type = 4
 custom_data_layer_3/name = "price"
 custom_data_layer_3/type = 2
+custom_data_layer_4/name = "level"
+custom_data_layer_4/type = 2
+custom_data_layer_5/name = ""
+custom_data_layer_5/type = 0
 sources/0 = SubResource("TileSetAtlasSource_btda1")
 
 [sub_resource type="Gradient" id="Gradient_rsyfn"]
@@ -282,6 +304,29 @@ colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 gradient = SubResource("Gradient_rsyfn")
 fill = 1
 fill_from = Vector2(0.5125, 0.45625)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7w7ni"]
+size = Vector2(56, 116.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_btda1"]
+size = Vector2(20, 704)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xq3o0"]
+size = Vector2(1280, 14)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xq3o0"]
+shader = ExtResource("7_xq3o0")
+shader_parameter/speed = 1.365
+shader_parameter/minStrength = 0.05
+shader_parameter/maxStrength = 0.01
+shader_parameter/strengthScale = 100.0
+shader_parameter/interval = 3.5
+shader_parameter/detail = 1.0
+shader_parameter/distortion = 0.0
+shader_parameter/heightOffset = 0.0
+shader_parameter/offset = 0.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_3ihge"]
 
 [node name="TestLevel" type="Node2D" node_paths=PackedStringArray("ground_tilemap", "seed_tilemap", "player")]
 script = ExtResource("1_eglq2")
@@ -342,3 +387,64 @@ position = Vector2(-640, 0)
 
 [node name="Right" type="Node2D" parent="."]
 position = Vector2(608, 0)
+
+[node name="Save" type="Button" parent="."]
+offset_left = -632.0
+offset_top = -136.0
+offset_right = -576.0
+offset_bottom = -88.0
+text = "Save"
+
+[node name="Load" type="Button" parent="."]
+offset_left = -632.0
+offset_top = -80.0
+offset_right = -576.0
+offset_bottom = -32.0
+text = "Load
+"
+
+[node name="Restart" type="Button" parent="."]
+offset_left = -624.0
+offset_top = -320.0
+offset_right = -616.0
+offset_bottom = -312.0
+
+[node name="RoomDetectZone" type="Area2D" parent="."]
+position = Vector2(-632, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomDetectZone"]
+position = Vector2(28, 5.75)
+shape = SubResource("RectangleShape2D_7w7ni")
+
+[node name="SceneTransitionAnim" parent="." instance=ExtResource("6_xq3o0")]
+position = Vector2(-608, 40)
+
+[node name="Borders" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders"]
+position = Vector2(-648, 0)
+shape = SubResource("RectangleShape2D_btda1")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Borders"]
+position = Vector2(616, 0)
+shape = SubResource("RectangleShape2D_btda1")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Borders"]
+position = Vector2(-16, -344)
+shape = SubResource("RectangleShape2D_xq3o0")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Borders"]
+position = Vector2(-16, 352)
+shape = SubResource("RectangleShape2D_xq3o0")
+
+[node name="Shader" type="MeshInstance2D" parent="."]
+material = SubResource("ShaderMaterial_xq3o0")
+position = Vector2(24, -304)
+rotation = 3.1415927
+scale = Vector2(280.5, 392.5)
+mesh = SubResource("QuadMesh_3ihge")
+
+[connection signal="pressed" from="Save" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="Load" to="." method="_on_load_pressed"]
+[connection signal="pressed" from="Restart" to="." method="_on_restart_pressed"]
+[connection signal="body_entered" from="RoomDetectZone" to="." method="_on_room_detect_zone_body_entered"]

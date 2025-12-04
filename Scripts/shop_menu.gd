@@ -13,7 +13,8 @@ var list : Dictionary = {
 	"1" : "res://Scenes/Inventory/items/peapodInv.tres",
 	"2" : "res://Scenes/Inventory/items/melonInv.tres",
 	"3" : "res://Scenes/Inventory/items/caneInv.tres",
-	"4" : "res://Scenes/Inventory/items/squashInv.tres"}
+	"4" : "res://Scenes/Inventory/items/squashInv.tres",
+	"5" : "res://Scenes/Inventory/items/bedInv.tres"}
 
 
 func _ready() -> void:
@@ -27,7 +28,7 @@ func _physics_process(delta: float) -> void:
 		pass
 	$Icon.play(str(item))
 	$Price.text = str(item_price)
-
+	$IconName.text = list[str(item)]
 func _on_left_button_pressed() -> void:
 	swap_item_back()
 

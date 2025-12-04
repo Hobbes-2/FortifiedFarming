@@ -30,7 +30,7 @@ func _physics_process(delta: float) -> void:
 	if camera.zoom < Vector2(1.5, 1.5):
 		camera.zoom = Vector2(1.5, 1.5)
 
-	$Money.text = str(PlayerGlobals.money)
+	$Money.text = str(PlayerGlobals.money) + "$"
 
 	var direction := Input.get_vector("Left", "Right", "Up", "Down")
 	if direction:

@@ -1,0 +1,71 @@
+[gd_scene load_steps=2 format=3 uid="uid://cs3g0cjc23yxh"]
+
+[ext_resource type="Script" uid="uid://r5db27qh711m" path="res://Scripts/main_menu.gd" id="1_28flt"]
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource("1_28flt")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 64.0
+offset_top = 64.0
+offset_right = 1152.0
+offset_bottom = 192.0
+theme_override_font_sizes/font_size = 100
+text = "Fortified Farming"
+
+[node name="Start" type="Button" parent="."]
+offset_left = 64.0
+offset_top = 320.0
+offset_right = 576.0
+offset_bottom = 568.0
+theme_override_font_sizes/font_size = 50
+text = "BEGIN"
+
+[node name="Settings" type="Button" parent="."]
+offset_left = 64.0
+offset_top = 640.0
+offset_right = 576.0
+offset_bottom = 720.0
+theme_override_font_sizes/font_size = 50
+text = "Configure settings"
+
+[node name="Quit" type="Button" parent="."]
+offset_left = 64.0
+offset_top = 800.0
+offset_right = 576.0
+offset_bottom = 880.0
+theme_override_font_sizes/font_size = 50
+text = "Quit"
+
+[node name="Button" type="Button" parent="."]
+offset_left = -64.0
+offset_right = 1920.0
+offset_bottom = 48.0
+
+[node name="SettingsDisp" type="Node2D" parent="."]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="SettingsDisp"]
+offset_right = 1920.0
+offset_bottom = 1136.0
+color = Color(0.3328807, 0.33288068, 0.33288068, 1)
+
+[node name="Back" type="Button" parent="SettingsDisp"]
+offset_left = 64.0
+offset_top = 64.0
+offset_right = 256.0
+offset_bottom = 128.0
+text = "<- Back"
+
+[node name="Filler" type="Label" parent="SettingsDisp"]
+offset_left = 600.0
+offset_top = 472.0
+offset_right = 1362.0
+offset_bottom = 542.0
+theme_override_font_sizes/font_size = 40
+text = "Nothing here yet! Adding it soon....."
+
+[connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="SettingsDisp/Back" to="." method="_on_back_pressed"]
