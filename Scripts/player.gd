@@ -27,8 +27,8 @@ func _physics_process(delta: float) -> void:
 		camera.zoom -= Vector2(.1, .1)
 	if camera.zoom > Vector2(4.0, 4.0):
 		camera.zoom = Vector2(4.0, 4.0)
-	if camera.zoom < Vector2(1.5, 1.5):
-		camera.zoom = Vector2(1.5, 1.5)
+	if camera.zoom < Vector2(1.75, 1.75):
+		camera.zoom = Vector2(1.75, 1.75)
 
 	$Money.text = str(PlayerGlobals.money) + "$"
 
@@ -44,9 +44,11 @@ func _physics_process(delta: float) -> void:
 			diraddon = "F"
 		sprite.play("Walk" + diraddon)
 		velocity = direction * SPEED
+		$WalkSFX.play()
 	else:
 		velocity = Vector2.ZERO
 		sprite.play("Idle" + diraddon)
+		$WalkSFX.stop()
 
 	move_and_slide()
 

@@ -28,7 +28,8 @@ func _physics_process(delta: float) -> void:
 		pass
 	$Icon.play(str(item))
 	$Price.text = str(item_price)
-	$IconName.text = list[str(item)]
+	var text_to_be = list[str(item)].erase(0, 29)
+	$IconName.text = text_to_be.left(text_to_be.length() - 8)
 func _on_left_button_pressed() -> void:
 	swap_item_back()
 

@@ -94,7 +94,7 @@ func _input(_event: InputEvent) -> void:
 										tile_to_be_placed = coords
 										if debug:
 											print("Placing:" , name1)
-
+										#data.material.set_shader_parameter("positionz", tile_mouse_pos)
 
 			if placeable and already_placed == false:
 				
@@ -135,6 +135,8 @@ func seed_handling(tilemap_pos, level, atlas_coords, final_seed_level):
 	var source_id = 0
 
 	seed_tilemap.set_cell(tilemap_pos, source_id, atlas_coords)
+	#seed_tilemap.get_cell_tile_data(tilemap_pos).instantiate()
+
 
 	await get_tree().create_timer(5.0 +- randf_range(0, 2)).timeout
 
@@ -154,7 +156,6 @@ func seed_handlingALT(tilemap_pos, level, atlas_coords, final_seed_level):
 		var new_atlas : Vector2i = Vector2i(atlas_coords.x + 1, atlas_coords.y)
 		seed_handling(tilemap_pos, level + 1, new_atlas, final_seed_level)
 
-
 func build(pos, atlas_coords):
 	var source_id = 1
 	var alt_tile = 0
@@ -171,10 +172,8 @@ func harvest(item):
 func clear_inv(item):
 	player.clear(item)
 
-
 func _on_save_pressed() -> void:
 	save()
-
 
 func _on_load_pressed() -> void:
 	load_data()
@@ -293,7 +292,6 @@ func load_data():
 		emit_signal("update")
 	else:
 		print("No data saved!")
-
 
 func _on_room_detect_zone_body_entered(body: Node2D) -> void:
 	if body is Player:
