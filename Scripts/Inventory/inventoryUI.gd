@@ -17,7 +17,7 @@ func _ready() -> void:
 func update_slots():
 	for i in range(min(inv.slots.size(), slots.size())):
 		slots[i].update(inv.slots[i])
-		#print(inv.slots[i])
+
 
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("Inventory"):
@@ -32,6 +32,9 @@ func _physics_process(delta: float) -> void:
 
 	if Input.is_action_just_pressed("Click"):
 		update_slots()
+
+
+
 
 func open():
 	visible = true

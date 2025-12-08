@@ -46,6 +46,55 @@ func _physics_process(delta: float) -> void:
 			get_tree().change_scene_to_file("res://Scenes/room.tscn")
 			save()
 
+#green highlight for tiles for placing beds
+
+
+
+	if PlayerGlobals.selected_plant == "bed0":
+		var mouse_pos = get_global_mouse_position()
+		var tile_mouse_pos = seed_tilemap.local_to_map(mouse_pos)
+		var tiledata = ground_tilemap.get_cell_tile_data(tile_mouse_pos)
+		var tile_mouse_posGND = ground_tilemap.local_to_map(mouse_pos)
+
+		var tileset := ground_tilemap.tile_set
+		for i in range(tileset.get_source_count()):
+			var source_id := tileset.get_source_id(i)
+			var source := tileset.get_source(source_id)
+			if source is TileSetAtlasSource:
+				var atlas_source := source as TileSetAtlasSource
+				var atlas_size := atlas_source.get_atlas_grid_size()
+				for x in range(atlas_size.x):
+					for y in range(atlas_size.y):
+						var coords := Vector2i(y, x)
+						if atlas_source.has_tile(coords):
+							var data = atlas_source.get_tile_data(coords, 0) # 0 = default alternative
+							if data:
+								if data.material:
+									data.material.set_shader_parameter('intensity', 0.3)
+									#if data == tiledata:
+										#tileset.get_cell_tile_data(coords).material.set_shader_parameter('intensity', 0.6)
+									if Vector2i(roundi(mouse_pos.x), roundi(mouse_pos.y)) == coords:
+										data.material.set_shader_parameter('intensity', 0.6)
+
+
+	else:
+		var tileset := ground_tilemap.tile_set
+		for i in range(tileset.get_source_count()):
+			var source_id := tileset.get_source_id(i)
+			var source := tileset.get_source(source_id)
+			if source is TileSetAtlasSource:
+				var atlas_source := source as TileSetAtlasSource
+				var atlas_size := atlas_source.get_atlas_grid_size()
+				for x in range(atlas_size.x):
+					for y in range(atlas_size.y):
+						var coords := Vector2i(y, x)
+						if atlas_source.has_tile(coords):
+							var data = atlas_source.get_tile_data(coords, 0) # 0 = default alternative
+							if data:
+								if data.material:
+									data.material.set_shader_parameter('intensity', 0.0)
+
+
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_pressed("Click"):
 		var mouse_pos = get_global_mouse_position()
@@ -189,7 +238,7 @@ func save():
 	file.store_var(player.global_position)
 	
 	# Save TileMap data
-	var tilemap = $SeedTilemap
+	var tilemap = $Tilemaps/SeedTilemap
 	var used = tilemap.get_used_cells()
 	var tile_data := []
 
@@ -217,7 +266,7 @@ func save():
 		#print(tile_data)
 	# Store the tile data
 	file.store_var(tile_data)
-	var gnd_tilemap = $GroundTilemap
+	var gnd_tilemap = $Tilemaps/GroundTilemap
 	var gnd_used = gnd_tilemap.get_used_cells()
 	var gnd_tile_data := []
 	for cell in gnd_used:
@@ -258,8 +307,8 @@ func load_data():
 		player.global_position = file.get_var()
 		
 		# Load tilemap
-		var tilemap = $SeedTilemap
-		var gnd_tilemap = $GroundTilemap
+		var tilemap = $Tilemaps/SeedTilemap
+		var gnd_tilemap = $Tilemaps/GroundTilemap
 		# Place tiles back on
 		tilemap.clear()  # clear existing tiles
 		#gnd_tilemap.clear()
@@ -308,7 +357,7 @@ func saveRESET():
 	file.store_var(player.global_position)
 	
 	# Save TileMap data
-	var tilemap = $SeedTilemap
+	var tilemap = $Tilemaps/SeedTilemap
 	var used = tilemap.get_used_cells()
 	var tile_data := []
 
@@ -334,7 +383,7 @@ func saveRESET():
 
 
 	file.store_var(tile_data)
-	var gnd_tilemap = $GroundTilemap
+	var gnd_tilemap = $Tilemaps/GroundTilemap
 	var gnd_used = gnd_tilemap.get_used_cells()
 	var gnd_tile_data := []
 	for cell in gnd_used:
@@ -376,8 +425,8 @@ func load_dataRESET():
 		player.global_position = file.get_var()
 		
 		# Load tilemap
-		var tilemap = $SeedTilemap
-		var gnd_tilemap = $GroundTilemap
+		var tilemap = $Tilemaps/SeedTilemap
+		var gnd_tilemap = $Tilemaps/GroundTilemap
 
 		# Place tiles back on
 		tilemap.clear()  # clear existing tiles

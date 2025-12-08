@@ -1,26 +1,21 @@
 shader_type canvas_item;
 
-uniform vec4 colour : source_color = vec4(1.0, 1.0, 1.0, 1.0);
-uniform float tint_factor : hint_range(0.0, 1.0) = 0.5;
-uniform float fade : hint_range(0.0, 1.0) = 1.0;
+uniform sampler2D overlay_tex: repeat_enable, filter_nearest;
+uniform float scale = 0.006944444; // calculated by 1/texture size e.g. 1/144
+varying vec2 world_position;
 
-void vertex() {
-	// Called for every vertex the material is visible on.
+void vertex(){
+	// calculate the world position for use in the fragment shader
+	world_position = (MODEL_MATRIX * vec4(VERTEX, 0.0, 1.0)).xy;
 }
 
 void fragment() {
-	vec4 main_texture = texture(TEXTURE, UV);
-	vec4 final_output = main_texture;
+	// only apply overlay_tex on the fully red parts of the original tiles
+	float mix_amount = floor(COLOR.r);
 	
-	float original_modulation = 1.0 - tint_factor;
+	// sample the overlay_tex using worldPos
+	vec4 overlay_color = texture(overlay_tex, world_position * scale);
 	
-	final_output.rgb = mix(main_texture.rgb * original_modulation, colour.rgb * tint_factor, tint_factor);
-	final_output.a *= fade;
-	
-	COLOR = final_output;
+	// combine original color and overlay color together
+	COLOR = mix(COLOR, overlay_color, mix_amount);
 }
-
-//void light() {
-//	// Called for every pixel for every light affecting the material.
-//	// Uncomment to replace the default light processing function with this one.
-//}

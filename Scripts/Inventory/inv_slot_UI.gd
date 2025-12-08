@@ -12,17 +12,21 @@ func update(slot : InvSlot):
 			PlayerGlobals.selected_plant = ""
 			item_display.visible = false
 			amount_label.visible = false
-
+			select(slot)
+		elif slot.item == load("res://Scenes/Inventory/items/" + str(PlayerGlobals.selected_plant).to_lower().left(-1) + "Inv" + ".tres") and slot.amount > 0 and hovering == true:
+			PlayerGlobals.selected_plant = ""
+			print("cleared")
 		elif !slot.item or slot.amount <= 0:
 			item_display.visible = false
 			amount_label.visible = false
+			select(slot)
 		else:
 			item_display.visible = true
 			item_display.texture = slot.item.texture
 			amount_label.visible = true
 			amount_label.text = str(slot.amount)
 			#print("test:" + str(iawwdatem_display.texture))
-		select(slot)
+			select(slot)
 
 
 func select(slot):
