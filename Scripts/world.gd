@@ -20,9 +20,9 @@ var savepath = "user://game.save"
 var savepathRESET = "user://reset.save"
 
 #scene transition
-@onready var scene_transition_anim: AnimationPlayer = $SceneTransitionAnim/AnimationPlayer
 var interacting : bool = false
 var inside : bool = false
+@onready var scene_transition_anim: AnimationPlayer = $AllMoving/SceneTransitionAnim/AnimationPlayer
 
 func _ready() -> void:
 	for i in plant_name_list.size():
@@ -38,6 +38,11 @@ func _ready() -> void:
 	scene_transition_anim.get_parent().get_node("ColorRect").visible = false
 
 func _physics_process(delta: float) -> void:
+
+	#for i in $AllMoving.get_child_count():
+	#$AllMoving.global_position.x += 0.1
+
+
 	if Input.is_action_pressed("Interact"):
 		if inside:
 			scene_transition_anim.get_parent().get_node("ColorRect").visible = true
@@ -238,7 +243,7 @@ func save():
 	file.store_var(player.global_position)
 	
 	# Save TileMap data
-	var tilemap = $Tilemaps/SeedTilemap
+	var tilemap = $AllMoving/Tilemaps/SeedTilemap
 	var used = tilemap.get_used_cells()
 	var tile_data := []
 
@@ -266,7 +271,7 @@ func save():
 		#print(tile_data)
 	# Store the tile data
 	file.store_var(tile_data)
-	var gnd_tilemap = $Tilemaps/GroundTilemap
+	var gnd_tilemap = $AllMoving/Tilemaps/GroundTilemap
 	var gnd_used = gnd_tilemap.get_used_cells()
 	var gnd_tile_data := []
 	for cell in gnd_used:
@@ -307,8 +312,8 @@ func load_data():
 		player.global_position = file.get_var()
 		
 		# Load tilemap
-		var tilemap = $Tilemaps/SeedTilemap
-		var gnd_tilemap = $Tilemaps/GroundTilemap
+		var tilemap = $AllMoving/Tilemaps/SeedTilemap
+		var gnd_tilemap = $AllMoving/Tilemaps/GroundTilemap
 		# Place tiles back on
 		tilemap.clear()  # clear existing tiles
 		#gnd_tilemap.clear()
@@ -357,7 +362,7 @@ func saveRESET():
 	file.store_var(player.global_position)
 	
 	# Save TileMap data
-	var tilemap = $Tilemaps/SeedTilemap
+	var tilemap = $AllMoving/Tilemaps/SeedTilemap
 	var used = tilemap.get_used_cells()
 	var tile_data := []
 
@@ -383,7 +388,7 @@ func saveRESET():
 
 
 	file.store_var(tile_data)
-	var gnd_tilemap = $Tilemaps/GroundTilemap
+	var gnd_tilemap = $AllMoving/Tilemaps/GroundTilemap
 	var gnd_used = gnd_tilemap.get_used_cells()
 	var gnd_tile_data := []
 	for cell in gnd_used:
@@ -425,8 +430,8 @@ func load_dataRESET():
 		player.global_position = file.get_var()
 		
 		# Load tilemap
-		var tilemap = $Tilemaps/SeedTilemap
-		var gnd_tilemap = $Tilemaps/GroundTilemap
+		var tilemap = $AllMoving/Tilemaps/SeedTilemap
+		var gnd_tilemap = $AllMoving/Tilemaps/GroundTilemap
 
 		# Place tiles back on
 		tilemap.clear()  # clear existing tiles

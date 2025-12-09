@@ -58,3 +58,4 @@ func swap_item_forward():
 func buy():
 	PlayerGlobals.money -= price
 	player.collect(load(list[str(item)]), 1)
+	$"../BuySFX".play()

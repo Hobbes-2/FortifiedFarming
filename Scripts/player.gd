@@ -3,7 +3,7 @@ extends CharacterBody2D
 
 const SPEED = 100.0
 const JUMP_VELOCITY = -400.0
-@onready var camera : Camera2D = $Camera2D
+@onready var camera: Camera2D = $MainCamera
 
 @export var inv : Inv
 @onready var sprite: AnimatedSprite2D = $Sprite2D

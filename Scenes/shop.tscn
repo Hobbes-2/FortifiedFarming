@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://c2cosccebo2nj"]
+[gd_scene load_steps=10 format=3 uid="uid://c2cosccebo2nj"]
 
 [ext_resource type="Script" uid="uid://debx8tehlthr0" path="res://Scripts/shop.gd" id="1_2shtd"]
 [ext_resource type="Texture2D" uid="uid://bv7r4b5ov0bgv" path="res://images/ShopSprite.png" id="2_fdj0q"]
 [ext_resource type="PackedScene" uid="uid://cnx6emqscvkwk" path="res://Scenes/shop_menu.tscn" id="3_io27d"]
 [ext_resource type="PackedScene" uid="uid://b0y7ld7wft7jy" path="res://Scenes/sell_menu.tscn" id="4_fdj0q"]
+[ext_resource type="AudioStream" uid="uid://blkl758u8uieb" path="res://Audio/ShopOpen.mp3" id="5_k6jq0"]
+[ext_resource type="AudioStream" uid="uid://uqjp0c4akiko" path="res://Audio/BuySound.mp3" id="6_3ps1r"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_fdj0q"]
 
@@ -41,6 +43,12 @@ scale = Vector2(0.5, 0.5)
 [node name="SellMenu" parent="." instance=ExtResource("4_fdj0q")]
 position = Vector2(104, -64)
 scale = Vector2(0.5, 0.5)
+
+[node name="ShopSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_k6jq0")
+
+[node name="BuySFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_3ps1r")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

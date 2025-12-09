@@ -1,9 +1,10 @@
-[gd_scene load_steps=37 format=3 uid="uid://cw8ldnuu87kf5"]
+[gd_scene load_steps=38 format=3 uid="uid://cw8ldnuu87kf5"]
 
 [ext_resource type="Script" uid="uid://ce2ixc1y5uu6t" path="res://Scripts/player.gd" id="1_v0iea"]
 [ext_resource type="Resource" uid="uid://b1r6unmuri8hf" path="res://Scenes/Inventory/playerInv.tres" id="2_vgqql"]
 [ext_resource type="PackedScene" uid="uid://c2aoi0ewhr606" path="res://Scenes/Inventory/player_inventory.tscn" id="3_6t5aa"]
 [ext_resource type="Texture2D" uid="uid://benwygdsyf2k2" path="res://images/PlayerAnims.png" id="3_fkybt"]
+[ext_resource type="Script" uid="uid://bl222b2i805oy" path="res://Scripts/main_camera.gd" id="4_3smsa"]
 [ext_resource type="Shader" uid="uid://c7wu42lk3vcst" path="res://Shaders/TintShader.gdshader" id="5_fkybt"]
 [ext_resource type="AudioStream" uid="uid://c7hf0ciqp3rph" path="res://Audio/SFX/walking-sound-effect-272246.mp3" id="6_x3wgy"]
 
@@ -235,9 +236,7 @@ scale_max = 3.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fkybt"]
 shader = ExtResource("5_fkybt")
-shader_parameter/colour = Color(1, 0.47843137, 0, 1)
-shader_parameter/tint_factor = 0.5
-shader_parameter/fade = 0.2000000095
+shader_parameter/scale = 0.006944444
 
 [sub_resource type="QuadMesh" id="QuadMesh_vgqql"]
 
@@ -256,19 +255,24 @@ animation = &"WalkL"
 frame_progress = 0.16739762
 speed_scale = 2.0
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="MainCamera" type="Camera2D" parent="."]
 zoom = Vector2(2.5, 2.5)
 drag_left_margin = 0.9
 drag_top_margin = 0.9
 drag_right_margin = 0.9
 drag_bottom_margin = 0.9
+script = ExtResource("4_3smsa")
+
+[node name="SwayTimer" type="Timer" parent="MainCamera"]
+wait_time = 2.0
+autostart = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
 
 [node name="Inventory" parent="." node_paths=PackedStringArray("camera", "money") instance=ExtResource("3_6t5aa")]
 visible = false
-camera = NodePath("../Camera2D")
+camera = NodePath("../MainCamera")
 money = NodePath("../Money")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
@@ -311,3 +315,5 @@ text = "0"
 stream = ExtResource("6_x3wgy")
 
 [node name="AudioListener2D" type="AudioListener2D" parent="."]
+
+[connection signal="timeout" from="MainCamera/SwayTimer" to="MainCamera" method="_on_sway_timer_timeout"]
