@@ -6,6 +6,7 @@ const JUMP_VELOCITY = -400.0
 @onready var camera: Camera2D = $MainCamera
 
 @export var inv : Inv
+@export var Dictionaryinv : Inv
 @onready var sprite: AnimatedSprite2D = $Sprite2D
 var diraddon = "F"
 

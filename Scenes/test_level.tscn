@@ -1080,7 +1080,18 @@ texture = ExtResource("19_7alf0")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("20_260qw")
 
+[node name="MoneyButton" type="Button" parent="."]
+offset_left = -612.0
+offset_top = -356.0
+offset_right = -572.0
+offset_bottom = -316.0
+theme_override_font_sizes/font_size = 1
+icon = ExtResource("4_7alf0")
+flat = true
+clip_text = true
+
 [connection signal="pressed" from="AllMoving/Save" to="." method="_on_save_pressed"]
 [connection signal="pressed" from="AllMoving/Load" to="." method="_on_load_pressed"]
 [connection signal="pressed" from="AllMoving/Restart" to="." method="_on_restart_pressed"]
 [connection signal="body_entered" from="AllMoving/RoomDetectZone" to="." method="_on_room_detect_zone_body_entered"]
+[connection signal="pressed" from="MoneyButton" to="." method="_on_money_button_pressed"]

@@ -73,3 +73,11 @@ layout_mode = 2
 
 [node name="Inv_Slot12" parent="NinePatchRect/GridContainer" instance=ExtResource("3_up7t3")]
 layout_mode = 2
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 0
+offset_left = -56.0
+offset_top = -144.0
+offset_right = 48.0
+offset_bottom = -115.0
+text = "INVENTORY"

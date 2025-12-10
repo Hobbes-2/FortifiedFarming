@@ -7,7 +7,18 @@ extends Panel
 
 var hovering : bool = false
 
+#things to do with the plant dictionary
+@export var dictionary : bool = false
+var first_time : bool = true
+var dict_popup = load("res://Scenes/dictionary_popup.tscn")
+var unlocked : bool = true
+
+
 func update(slot : InvSlot):
+	if dictionary and first_time == false:
+		if hovering == true and unlocked == true:
+			get_parent().get_parent().get_parent().get_parent().dict_popup.show()
+	else:
 		if slot.item == load("res://Scenes/Inventory/items/" + str(PlayerGlobals.selected_plant).to_lower().left(-1) + "Inv" + ".tres") and slot.amount <= 0:
 			PlayerGlobals.selected_plant = ""
 			item_display.visible = false
@@ -27,6 +38,7 @@ func update(slot : InvSlot):
 			amount_label.text = str(slot.amount)
 			#print("test:" + str(iawwdatem_display.texture))
 			select(slot)
+		first_time = false
 
 
 func select(slot):

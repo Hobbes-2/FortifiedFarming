@@ -1,12 +1,15 @@
-[gd_scene load_steps=38 format=3 uid="uid://cw8ldnuu87kf5"]
+[gd_scene load_steps=41 format=3 uid="uid://cw8ldnuu87kf5"]
 
 [ext_resource type="Script" uid="uid://ce2ixc1y5uu6t" path="res://Scripts/player.gd" id="1_v0iea"]
 [ext_resource type="Resource" uid="uid://b1r6unmuri8hf" path="res://Scenes/Inventory/playerInv.tres" id="2_vgqql"]
 [ext_resource type="PackedScene" uid="uid://c2aoi0ewhr606" path="res://Scenes/Inventory/player_inventory.tscn" id="3_6t5aa"]
+[ext_resource type="Resource" uid="uid://cotfg6bp2q8dm" path="res://Scenes/Inventory/DictionaryInventory.tres" id="3_f1ek2"]
 [ext_resource type="Texture2D" uid="uid://benwygdsyf2k2" path="res://images/PlayerAnims.png" id="3_fkybt"]
 [ext_resource type="Script" uid="uid://bl222b2i805oy" path="res://Scripts/main_camera.gd" id="4_3smsa"]
 [ext_resource type="Shader" uid="uid://c7wu42lk3vcst" path="res://Shaders/TintShader.gdshader" id="5_fkybt"]
 [ext_resource type="AudioStream" uid="uid://c7hf0ciqp3rph" path="res://Audio/SFX/walking-sound-effect-272246.mp3" id="6_x3wgy"]
+[ext_resource type="PackedScene" uid="uid://c0p0rgm88ojef" path="res://Scenes/item_dictionary.tscn" id="8_8erm5"]
+[ext_resource type="PackedScene" uid="uid://dlwaibhuip5wb" path="res://Scenes/dictionary_popup.tscn" id="10_tx1dd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6t5aa"]
 size = Vector2(16, 16)
@@ -244,6 +247,7 @@ shader_parameter/scale = 0.006944444
 z_index = 1
 script = ExtResource("1_v0iea")
 inv = ExtResource("2_vgqql")
+Dictionaryinv = ExtResource("3_f1ek2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 8)
@@ -315,5 +319,13 @@ text = "0"
 stream = ExtResource("6_x3wgy")
 
 [node name="AudioListener2D" type="AudioListener2D" parent="."]
+
+[node name="Item Dictionary" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("8_8erm5")]
+visible = false
+camera = NodePath("../MainCamera")
+
+[node name="DictionaryPopup" parent="." node_paths=PackedStringArray("item_dict") instance=ExtResource("10_tx1dd")]
+visible = false
+item_dict = NodePath("../Item Dictionary")
 
 [connection signal="timeout" from="MainCamera/SwayTimer" to="MainCamera" method="_on_sway_timer_timeout"]

@@ -1,0 +1,139 @@
+[gd_scene load_steps=4 format=3 uid="uid://c0p0rgm88ojef"]
+
+[ext_resource type="Texture2D" uid="uid://cxw5sr2kkkbsd" path="res://images/InventoryBGFiller.png" id="1_8fpqg"]
+[ext_resource type="Script" uid="uid://cvkb403qbysay" path="res://Scripts/item_dictionary.gd" id="1_wss71"]
+[ext_resource type="PackedScene" uid="uid://b8toxqsee1rgy" path="res://Scenes/Inventory/inv_slot.tscn" id="3_fpxd1"]
+
+[node name="Item Dictionary" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_wss71")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = -144.0
+offset_top = -112.0
+offset_right = 146.0
+offset_bottom = 110.0
+texture = ExtResource("1_8fpqg")
+region_rect = Rect2(0, 5, 64, 64)
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="ScrollContainer" type="ScrollContainer" parent="NinePatchRect"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 282.0
+offset_bottom = 210.0
+
+[node name="GridContainer" type="GridContainer" parent="NinePatchRect/ScrollContainer"]
+layout_mode = 2
+columns = 4
+
+[node name="Inv_Slot1" parent="NinePatchRect/ScrollContainer/GridContainer" instance=ExtResource("3_fpxd1")]
+layout_mode = 2
+dictionary = true
+
+[node name="Inv_Slot2" parent="NinePatchRect/ScrollContainer/GridContainer" instance=ExtResource("3_fpxd1")]
+layout_mode = 2
+dictionary = true
+
+[node name="Inv_Slot3" parent="NinePatchRect/ScrollContainer/GridContainer" instance=ExtResource("3_fpxd1")]
+layout_mode = 2
+dictionary = true
+
+[node name="Inv_Slot4" parent="NinePatchRect/ScrollContainer/GridContainer" instance=ExtResource("3_fpxd1")]
+layout_mode = 2
+dictionary = true
+
+[node name="Inv_Slot5" parent="NinePatchRect/ScrollContainer/GridContainer" instance=ExtResource("3_fpxd1")]
+layout_mode = 2
+dictionary = true
+
+[node name="Inv_Slot6" parent="NinePatchRect/ScrollContainer/GridContainer" instance=ExtResource("3_fpxd1")]
+layout_mode = 2
+dictionary = true
+
+[node name="Inv_Slot7" parent="NinePatchRect/ScrollContainer/GridContainer" instance=ExtResource("3_fpxd1")]
+layout_mode = 2
+dictionary = true
+
+[node name="Inv_Slot8" parent="NinePatchRect/ScrollContainer/GridContainer" instance=ExtResource("3_fpxd1")]
+layout_mode = 2
+dictionary = true
+
+[node name="Inv_Slot9" parent="NinePatchRect/ScrollContainer/GridContainer" instance=ExtResource("3_fpxd1")]
+layout_mode = 2
+dictionary = true
+
+[node name="Inv_Slot10" parent="NinePatchRect/ScrollContainer/GridContainer" instance=ExtResource("3_fpxd1")]
+layout_mode = 2
+dictionary = true
+
+[node name="Inv_Slot11" parent="NinePatchRect/ScrollContainer/GridContainer" instance=ExtResource("3_fpxd1")]
+layout_mode = 2
+dictionary = true
+
+[node name="Inv_Slot12" parent="NinePatchRect/ScrollContainer/GridContainer" instance=ExtResource("3_fpxd1")]
+layout_mode = 2
+dictionary = true
+
+[node name="Inv_Slot13" parent="NinePatchRect/ScrollContainer/GridContainer" instance=ExtResource("3_fpxd1")]
+layout_mode = 2
+dictionary = true
+
+[node name="Inv_Slot14" parent="NinePatchRect/ScrollContainer/GridContainer" instance=ExtResource("3_fpxd1")]
+layout_mode = 2
+dictionary = true
+
+[node name="Inv_Slot15" parent="NinePatchRect/ScrollContainer/GridContainer" instance=ExtResource("3_fpxd1")]
+layout_mode = 2
+dictionary = true
+
+[node name="Inv_Slot16" parent="NinePatchRect/ScrollContainer/GridContainer" instance=ExtResource("3_fpxd1")]
+layout_mode = 2
+dictionary = true
+
+[node name="Inv_Slot17" parent="NinePatchRect/ScrollContainer/GridContainer" instance=ExtResource("3_fpxd1")]
+layout_mode = 2
+dictionary = true
+
+[node name="Inv_Slot18" parent="NinePatchRect/ScrollContainer/GridContainer" instance=ExtResource("3_fpxd1")]
+layout_mode = 2
+dictionary = true
+
+[node name="Inv_Slot19" parent="NinePatchRect/ScrollContainer/GridContainer" instance=ExtResource("3_fpxd1")]
+layout_mode = 2
+dictionary = true
+
+[node name="Inv_Slot20" parent="NinePatchRect/ScrollContainer/GridContainer" instance=ExtResource("3_fpxd1")]
+layout_mode = 2
+dictionary = true
+
+[node name="Inv_Slot21" parent="NinePatchRect/ScrollContainer/GridContainer" instance=ExtResource("3_fpxd1")]
+layout_mode = 2
+dictionary = true
+
+[node name="Inv_Slot22" parent="NinePatchRect/ScrollContainer/GridContainer" instance=ExtResource("3_fpxd1")]
+layout_mode = 2
+dictionary = true
+
+[node name="Inv_Slot23" parent="NinePatchRect/ScrollContainer/GridContainer" instance=ExtResource("3_fpxd1")]
+layout_mode = 2
+dictionary = true
+
+[node name="Inv_Slot24" parent="NinePatchRect/ScrollContainer/GridContainer" instance=ExtResource("3_fpxd1")]
+layout_mode = 2
+dictionary = true
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 0
+offset_left = -88.0
+offset_top = -144.0
+offset_right = 80.0
+offset_bottom = -115.0
+text = "PLANT ALMANAC"

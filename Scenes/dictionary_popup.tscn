@@ -1,0 +1,56 @@
+[gd_scene load_steps=3 format=3 uid="uid://dlwaibhuip5wb"]
+
+[ext_resource type="Script" uid="uid://ckrawe4ei3qcg" path="res://Scripts/dictionary_popup.gd" id="1_4yt54"]
+[ext_resource type="Texture2D" uid="uid://cgt027bvng6fy" path="res://images/bed.svg" id="2_eklax"]
+
+[node name="DictionaryPopup" type="Node2D"]
+z_index = 4
+script = ExtResource("1_4yt54")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -192.0
+offset_top = -128.0
+offset_right = 192.0
+offset_bottom = 128.0
+color = Color(1, 0, 0, 0.14901961)
+
+[node name="CloseButton" type="Button" parent="."]
+offset_left = 160.0
+offset_top = -120.0
+offset_right = 184.0
+offset_bottom = -83.0
+text = "X"
+
+[node name="descriptionLahel" type="Label" parent="."]
+offset_left = -184.0
+offset_top = 56.0
+offset_right = -144.0
+offset_bottom = 85.0
+text = "Description: :3"
+
+[node name="NameLabel" type="Label" parent="."]
+offset_left = -184.0
+offset_top = -120.0
+offset_right = -144.0
+offset_bottom = -91.0
+text = "namenamename"
+
+[node name="priceLabel" type="Label" parent="."]
+offset_left = -48.0
+offset_top = -64.0
+offset_right = 174.0
+offset_bottom = -35.0
+text = "Price: a lot of money ig"
+
+[node name="LocationLabel" type="Label" parent="."]
+offset_left = -48.0
+offset_top = -16.0
+offset_right = 153.0
+offset_bottom = 13.0
+text = "Obtained From - Store"
+
+[node name="IconImage" type="Sprite2D" parent="."]
+position = Vector2(-120, -24)
+texture = ExtResource("2_eklax")
+
+[connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]

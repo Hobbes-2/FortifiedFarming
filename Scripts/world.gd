@@ -470,3 +470,7 @@ func load_dataRESET():
 func _on_restart_pressed() -> void:
 	load_dataRESET()
 	save()
+
+
+func _on_money_button_pressed() -> void:
+	PlayerGlobals.money += randi()
