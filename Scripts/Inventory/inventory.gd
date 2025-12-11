@@ -16,7 +16,7 @@ func insert(item : InvItem, amount : int):
 			emptyslots[0].item = item
 			emptyslots[0].amount = amount
 	update.emit()
-
+	print("made iot")
 func clear(item : InvItem):
 	for i in 11:
 		slots[i].item = null #take this out if the amount you want to be 1

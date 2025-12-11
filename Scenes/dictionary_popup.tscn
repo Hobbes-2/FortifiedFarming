@@ -21,7 +21,7 @@ offset_right = 184.0
 offset_bottom = -83.0
 text = "X"
 
-[node name="descriptionLahel" type="Label" parent="."]
+[node name="descriptionLabel" type="Label" parent="."]
 offset_left = -184.0
 offset_top = 56.0
 offset_right = -144.0

@@ -7,4 +7,7 @@
 script = ExtResource("1_0gpnh")
 name = "Cane"
 texture = ExtResource("2_uxls7")
+price = 1
+location = "Shop"
+definition = "Also called sugarcane, it is used for making sugar."
 metadata/_custom_type_script = "uid://h8dqe2hocrl3"

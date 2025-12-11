@@ -324,8 +324,6 @@ stream = ExtResource("6_x3wgy")
 visible = false
 camera = NodePath("../MainCamera")
 
-[node name="DictionaryPopup" parent="." node_paths=PackedStringArray("item_dict") instance=ExtResource("10_tx1dd")]
-visible = false
-item_dict = NodePath("../Item Dictionary")
+[node name="DictionaryPopup" parent="." instance=ExtResource("10_tx1dd")]
 
 [connection signal="timeout" from="MainCamera/SwayTimer" to="MainCamera" method="_on_sway_timer_timeout"]

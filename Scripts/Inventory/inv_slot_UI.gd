@@ -36,10 +36,9 @@ func update(slot : InvSlot):
 			item_display.texture = slot.item.texture
 			amount_label.visible = true
 			amount_label.text = str(slot.amount)
-			#print("test:" + str(iawwdatem_display.texture))
 			select(slot)
-		first_time = false
 
+		first_time = false
 
 func select(slot):
 	if debug:

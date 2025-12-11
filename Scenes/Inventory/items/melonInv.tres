@@ -7,4 +7,7 @@
 script = ExtResource("1_ypefd")
 name = "Melon"
 texture = ExtResource("2_iew1x")
+price = 1
+location = "shop"
+definition = "a melon"
 metadata/_custom_type_script = "uid://h8dqe2hocrl3"

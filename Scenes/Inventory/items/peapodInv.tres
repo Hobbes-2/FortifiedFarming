@@ -7,4 +7,7 @@
 script = ExtResource("1_2eqmj")
 name = "PeaPod"
 texture = ExtResource("2_cx48d")
+price = 4
+location = "shop"
+definition = "filler"
 metadata/_custom_type_script = "uid://h8dqe2hocrl3"

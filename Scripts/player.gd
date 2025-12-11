@@ -9,11 +9,15 @@ const JUMP_VELOCITY = -400.0
 @export var Dictionaryinv : Inv
 @onready var sprite: AnimatedSprite2D = $Sprite2D
 var diraddon = "F"
+@onready var item_dictionary: Control = $"Item Dictionary"
 
 @export var top : Node2D
 @export var left : Node2D
 @export var bot : Node2D
 @export var right : Node2D
+
+func _ready() -> void:
+	item_dictionary.collect.connect(collect_for_dict)
 
 func _physics_process(delta: float) -> void:
 
@@ -53,12 +57,16 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
+
+
 func collect(item, number):
 	inv.insert(item, number)
+
+func collect_for_dict():
+	Dictionaryinv.insert(item_dictionary.item, 100)
 
 func clear(item):
 	inv.clear(item)
 
-#This is a test to see if git is working
 func player_shop_method():
 	pass
