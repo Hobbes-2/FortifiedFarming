@@ -15,6 +15,8 @@ var plant_placed = "placed"
 var ground_layer = 1
 "res://Scenes/Inventory/items/carrotInv.tres"
 
+var collect_popup = preload("res://Scenes/collect_popup.tscn")
+
 #saving stuff
 var savepath = "user://game.save"
 var savepathRESET = "user://reset.save"
@@ -99,7 +101,6 @@ func _physics_process(delta: float) -> void:
 								if data.material:
 									data.material.set_shader_parameter('intensity', 0.0)
 
-
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_pressed("Click"):
 		var mouse_pos = get_global_mouse_position()
@@ -179,11 +180,16 @@ func _input(_event: InputEvent) -> void:
 				seed_tilemap.set_cell(tile_mouse_pos, 0, Vector2i(-1, -1))
 				player.collect(item, randi_range(1, 3))
 				PlayerGlobals.sell_total += tiledata2.get_custom_data("price")
-
+				var popup = collect_popup.instantiate()
+				player.camera.add_child(popup)
+				while popup.modulate.a >= 0.0:
+					popup.modulate.a -= 0.1
+					popup.global_position.y -= 2
+					await get_tree().create_timer(0.1).timeout
+				popup.queue_free()
 			else:
 				if debug:
 					print("cannot harvest")
-
 
 func seed_handling(tilemap_pos, level, atlas_coords, final_seed_level):
 	var source_id = 0
@@ -470,7 +476,6 @@ func load_dataRESET():
 func _on_restart_pressed() -> void:
 	load_dataRESET()
 	save()
-
 
 func _on_money_button_pressed() -> void:
 	PlayerGlobals.money += randi()
